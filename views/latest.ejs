@@ -1,0 +1,43 @@
+<div class="container-xxl px-md-5 bg-white">
+
+    <header
+        class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+        <a href="/index" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+            <img src="/img/logo.svg" width="229" height="68" alt="Cooking Blog - Made with Node.js">
+            <div style="margin-top: 25px;">
+              <h2>MoViEpSyCh</h2>
+            </div>
+        </a>
+
+        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+            <li><a href="/index" class="nav-link px-2 link-secondary">Home</a></li>
+            <li><a href="/about" class="nav-link px-2 link-secondary">About</a></li>
+            <li><a href="/logout" class="nav-link px-2 link-secondary">Logout</a></li>
+        </ul>
+
+        <div class="col-md-3 text-end">
+            <form method="POST" action="/search">
+                <input type="text" name="searchTerm" class="form-control" placeholder="Search..." aria-label="Search">
+                <!-- <div class="col-12"> -->
+                    <!-- <button type="submit" class="btn btn-primary">Search</button> -->
+                  <!-- </div> -->
+            </form>
+        </div>
+    </header>
+    <h1 class="pb-4">Explore Latest Movies</h1>
+
+<div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+  <% if(lmovies != '') { %>
+    <% lmovies.forEach(function(lmovies, index){ %>
+    <a href="/details/<%= lmovies._id %>" class="col text-center category__link">
+      <div class="category__img category__img--large shadow">
+        <img src="/uploads/<%= lmovies.img %>" alt="<%= lmovies.name %>" loading="lazy">
+      </div>
+      <div class="pt-1"><%= lmovies.name %></div>
+    </a>
+    <% }) %>
+  <% } else { %>
+    <p>No items found.</p>
+  <% } %> 
+</div>
+    </div>

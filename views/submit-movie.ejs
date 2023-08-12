@@ -1,0 +1,101 @@
+<div class="container-xxl px-md-5 bg-white">
+
+    <header
+        class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+        <a href="/adminindex" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+            <img src="/img/logo.svg" width="229" height="68" alt="Cooking Blog - Made with Node.js">
+            <div style="margin-top: 25px;">
+              <h2>MoViEpSyCh</h2>
+            </div>
+        </a>
+
+        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+          <li><a href="/adminindex" class="nav-link px-2 link-secondary">Admin</a></li>
+          <li><a href="/submit" class="nav-link px-2 link-secondary">Submit</a></li>
+          <li><a href="/alogout" class="nav-link px-2 link-secondary">Logout</a></li>
+        </ul>
+
+        <div class="col-md-3 text-end">
+            <form method="POST" action="/search">
+                <input type="text" name="searchTerm" class="form-control" placeholder="Search..." aria-label="Search">
+            </form>
+        </div>
+    </header>
+    <div class="px-4 py-5 my-5 text-center">
+        <h1 class="display-5 fw-bold">Submit Your Movie</h1>
+        <div class="col-lg-6 mx-auto">
+          <p class="lead">Share your amazing movies with thousands of web developers accross the world. Fill our form to get started.</p>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+
+        <% if(infoSubmitObj != '') { %>
+          <div class="col-8 alert alert-success" role="alert">
+            <%= infoSubmitObj %>
+          </div>
+        <% } %>
+      
+        <% if(infoErrorsObj != '') { %>
+          <div class="col-8 alert alert-danger" role="alert">
+            <%= infoErrorsObj[0].message %>
+          </div>
+        <% } %>
+      
+        <div class="col-8">
+      
+          <form action="/submit" enctype="multipart/form-data" method="POST">
+          
+            <div class="row g-3">
+      
+              <div class="col-12">
+                <label for="name" class="form-label">Movie Name</label>
+                <input type="text" name="name" id="name" class="form-control" required>
+              </div>
+              
+              <div class="col-12">
+                <label for="description" class="form-label">Description</label>
+                <textarea name="des" id="des" class="form-control" cols="30" rows="4"></textarea>
+              </div>
+      
+              <div class="col-12">
+                <label for="name" class="form-label">Cast</label><br>
+                <div class="ingredientList">
+                  <div class="ingredeintDiv mb-1">
+                    <input type="text" name="cast" class="form-control">
+                  </div>
+                </div>
+              </div>
+      
+              <div class="col-12">
+                <button type="button" class="btn btn-outline-primary" id="addIngredientsBtn">+ Cast member</button>
+              </div>
+      
+              <div class="col-12">
+                <label for="category">Select Genere</label>
+                <select class="form-select form-control" name="genere" aria-label="Category">
+                  <option selected>Select Genere</option>
+                  <option value="Thriller">Thriller</option>
+                  <option value="Action">Action</option>
+                  <option value="Horror">Horror</option>
+                  <option value="Adventure">Adventure</option>
+                  <option value="Drama">Drama</option>
+                  <option value="Romance">Romance</option>
+                </select>
+              </div>
+      
+              <div class="col-12">
+                <label for="image">Movie Image</label>
+                <input type="file" class="form-control" name="img" accept="image/*">
+              </div>
+      
+              <div class="col-12">
+                <button type="submit" class="btn btn-primary">Submit Movie</button>
+              </div>
+      
+            </div>
+          
+          </form>
+      
+        </div>
+      </div>
+</div>

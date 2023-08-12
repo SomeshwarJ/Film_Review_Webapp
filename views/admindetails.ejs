@@ -1,0 +1,79 @@
+<div class="container-xxl px-md-5 bg-white">
+  <header
+    class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+    <a href="/adminindex" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+      <img src="/img/logo.svg" width="229" height="68" alt="Cooking Blog - Made with Node.js">
+      <div style="margin-top: 25px;">
+        <h2>MoViEpSyCh</h2>
+      </div>
+    </a>
+    <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+      <li><a href="/adminindex" class="nav-link px-2 link-secondary">Home</a></li>
+      <li><a href="/submit" class="nav-link px-2 link-secondary">Submit</a></li>
+      <li><a href="/alogout" class="nav-link px-2 link-secondary">Logout</a></li>
+    </ul>
+
+    <div class="col-md-3 text-end">
+      <form method="POST" action="/adminsearch">
+        <input type="text" name="searchTerm" class="form-control" placeholder="Search..." aria-label="Search">
+      </form>
+    </div>
+  </header>
+  <% if(movdet !=null ) { %>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/index">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page"><%- movdet.name %></li>
+      </ol>
+    </nav>
+    <div class="row">
+      <div class="col-12 col-md-4" style="max-height: 600px; max-width: 350px;">
+        <img src="/uploads/<%- movdet.img %>" class="img-fluid sticky-top" style="top: 20px;" alt="<%- movdet.name %>"
+          loading="lazy">
+      </div>
+      <div class="col-12 col-md-8">
+        <div class="row">
+          <div class="col-12">
+            <h1><%- movdet.name %></h1>
+          </div>
+          <div class="col-12 mb-4"><i class="bi bi-tag"></i> <%- movdet.genere %></div>
+          <div class="col-12" style="white-space: pre-line;">
+            <h4>Movie Description</h4>
+            <%- movdet.des %>
+          </div>
+        </div>
+        <div class="row pt-4">
+          <div class="col-12">
+            <h4>Cast</h4>
+            <ul class="list-group list-group-flush">
+              <% movdet.cast.forEach(function(ingredients, index){ %>
+                <li class="list-group-item">
+                  <%= ingredients %>
+                </li>
+                <% }) %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br><br>
+    <form action="/adetails" method="POST">
+      <input type="hidden" name="id" value="<%= movdet._id %>">
+      <div class="text-center">
+        <button class="btn btn-lg btn-primary btn-login fw-bold text-uppercase" type="submit">
+          Delete
+        </button>
+      </div>
+    </form><br>
+    <form action="/update" method="POST">
+      <input type="hidden" name="id" value="<%= movdet._id %>">
+      <div class="text-center">
+        <button class="btn btn-lg btn-primary btn-login fw-bold text-uppercase" type="submit">
+          Update
+        </button>
+      </div>
+    </form>
+    <% } else { %>
+      <p>No item found.</p>
+      <% } %>
+</div>

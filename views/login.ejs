@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    <title>MOVIES</title>
+    <style>
+        body {
+            background: #007bff;
+            background: linear-gradient(to right, #ffffffab, #7e7e7e);
+        }
+
+        .card-img-left {
+            width: 45%;
+            background: scroll center url('https://filmschoolrejects.com/wp-content/uploads/2020/05/inception-top.jpg');
+            background-size: cover;
+        }
+
+        a{
+            color:  #007bff !important;
+        }
+        button{
+            background-color: #4e4e4e !important;
+            border-color: #4e4e4e !important;
+        }
+
+        .btn-login {
+            font-size: 0.9rem;
+            letter-spacing: 0.05rem;
+            padding: 0.75rem 1rem;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-xl-9 mx-auto">
+                <div class="card flex-row my-5 border-0 shadow rounded-3 overflow-hidden">
+                    <div class="card-img-left d-none d-md-flex">
+                    </div>
+                    <div class="card-body p-4 p-sm-5">
+                        <h5 class="card-title text-center mb-5 fw-light fs-5">Login</h5>
+                        <form action="/index" method="POST" >
+                            <% if (msg1!='') {%>
+                                <div class="alert alert-danger text-center" role="alert">
+                                    <%= msg1 %>
+                                </div>
+                            <% } %>
+                            <div class="form-floating mb-3">
+                                <input type="email" class="form-control" id="floatingInputEmail" name="email">
+                                <label for="floatingInputEmail">Email address</label>
+                            </div>
+
+                            <div class="form-floating mb-3">
+                                <input type="password" class="form-control" id="floatingPassword" name="pass">
+                                <label for="floatingPassword">Password</label>
+                            </div>
+
+                            <div class="d-grid mb-2">
+                                <button class="btn btn-lg btn-primary btn-login fw-bold text-uppercase" type="submit">
+                                    Login
+                                </button>
+                                <a class="d-block text-center mt-2 small" href="/register">Don't have an account? Sign Up</a>
+                            </div>
+                            
+                            <hr class="my-4">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

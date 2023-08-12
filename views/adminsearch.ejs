@@ -1,0 +1,80 @@
+<div class="container-xxl px-md-5 bg-white">
+  <header
+    class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+    <a href="/adminindex" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+      <img src="/img/logo.svg" width="229" height="68" alt="Cooking Blog - Made with Node.js">
+      <div style="margin-top: 25px;">
+        <h2>MoViEpSyCh</h2>
+      </div>
+    </a>
+    <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+      <li><a href="/adminindex" class="nav-link px-2 link-secondary">Admin</a></li>
+      <li><a href="/submit" class="nav-link px-2 link-secondary">Submit</a></li>
+      <li><a href="/alogout" class="nav-link px-2 link-secondary">Logout</a></li>
+    </ul>
+
+    <div class="col-md-3 text-end">
+      <form method="POST" action="/adminsearch">
+        <input type="text" name="searchTerm" class="form-control" placeholder="Search..." aria-label="Search">
+        <!-- <div class="col-12"> -->
+        <!-- <button type="submit" class="btn btn-primary">Search</button> -->
+        <!-- </div> -->
+      </form>
+    </div>
+  </header>
+
+<h1 class="pb-4">Search Results</h1>
+<% if(movdet1 != '') { %>
+  <% movdet1.forEach(function(lat, index){ %>
+  <section style="background-color: rgb(255, 255, 255);">
+    <div class="container py-5">
+      <div class="row justify-content-center mb-3">
+        <div class="col-md-12 col-xl-10">
+          <div class="card shadow-0 border rounded-3">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
+                  <div class="bg-image hover-zoom ripple rounded ripple-surface">
+                    <img src="/uploads/<%= lat.img %>" class="w-100" />
+                    <a href="#!">
+                      <div class="hover-overlay">
+                        <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+                <div class="col-md-6 col-lg-6 col-xl-6">
+                  <h5><%- lat.name %></h5>
+                  <div class="mt-1 mb-0 text-muted small">
+                    <span><%- lat.genere %></span>
+                  </div>
+                  <p class="">
+                    <%- lat.des %>
+                  </p>
+                </div>
+                <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
+                  <div class="d-flex flex-column mt-4 text-center">
+                    <form action="/adetails" method="POST">
+                      <input type="hidden" name="id" value="<%= lat._id %>">
+                      <button class="btn btn-primary btn-sm" type="submit">Delete</button>
+                    </form>
+                    <br>
+                    <form action="/update" method="POST">
+                      <input type="hidden" name="id" value="<%= lat._id %>">
+                      <button class="btn btn-primary btn-sm" type="submit">Update</button>
+                    </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <% }) %>
+<% } else { %>
+  <p>No items found.</p>
+<% } %>
+</div>

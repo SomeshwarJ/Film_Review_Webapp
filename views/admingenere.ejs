@@ -1,0 +1,42 @@
+<div class="container-xxl px-md-5 bg-white">
+  <header
+    class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+    <a href="/adminindex" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+      <img src="/img/logo.svg" width="229" height="68" alt="Cooking Blog - Made with Node.js">
+      <div style="margin-top: 25px;">
+        <h2>MoViEpSyCh</h2>
+      </div>
+    </a>
+    <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+      <li><a href="/adminindex" class="nav-link px-2 link-secondary">Home</a></li>
+      <li><a href="/submit" class="nav-link px-2 link-secondary">Submit</a></li>
+      <li><a href="/alogout" class="nav-link px-2 link-secondary">Logout</a></li>
+    </ul>
+    <div class="col-md-3 text-end">
+      <form method="POST" action="/adminsearch">
+        <input type="text" name="searchTerm" class="form-control" placeholder="Search..." aria-label="Search">
+      </form>
+    </div>
+  </header>
+  <section class="pb-4 pt-4">
+    <div class="d-flex mb-2 align-items-center">
+      <h2>Latest Movies</h2>
+    </div>
+    <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+      <% if(latest1 !='' ) { %>
+        <% latest1.forEach(function(lat, index){ %>
+          <a href="/adetails/<%= lat._id%>" class="col text-center category__link">
+            <div class="category__img category__img--large shadow">
+              <img src="/uploads/<%= lat.img %>" alt="<%= lat.name %>" loading="lazy">
+            </div>
+            <div class="pt-1">
+              <%= lat.name %>
+            </div>
+          </a>
+          <% }) %>
+            <% } else { %>
+              <p>No items found.</p>
+              <% } %>
+    </div>
+  </section>
+</div>
